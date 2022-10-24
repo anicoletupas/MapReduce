@@ -2,6 +2,7 @@
 #include "FileManagement.h"
 #include <iostream>
 #include <filesystem>
+#include <map>
 
 using namespace std;
 
@@ -29,6 +30,10 @@ int main()
 	cout << "Starting to parse files in input directory... \n";
 
 	FileManagement::iterateFiles(inPath);
+	FileManagement::setIntermediatePath(intPath);
+	FileManagement::setOutputPath(outPath);
+	FileManagement::createOutput(intPath);
+	FileManagement::createOutput(outPath);
 
 	return 0;
 }

@@ -2,14 +2,15 @@
 #ifndef MAP_H
 #define MAP_H
 #include <string>
+#include <map>
 
 // map class
 
 class Map
 {
 public:
-	static void mapExport();
-	static void map(std::string filename, std::string input);
+	static void mapExport(std::string key, int value);
+	static void mapFile(std::string filename, std::string input);
 };
 
 #endif
