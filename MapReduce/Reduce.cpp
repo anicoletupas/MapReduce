@@ -4,18 +4,19 @@
 using namespace std;
 
 // no file io
-void exportAll()
+void exportAll(string key, int result)
 {
 	// write result out to the output directory
 }
 
+// reads out (string: the word, [1,1,1,1]), passes in "the word" and 4 to export to output file
 void reduce(string key, int iterator[])
 {
+	int sum = 0;
 	for (int i = 0; i < sizeof(iterator); i++)
 	{
-		int sum = 0;
 		sum += iterator[i];
 	}
 
-	exportAll();
+	exportAll(key, sum);
 }
