@@ -4,12 +4,13 @@
 
 #include <filesystem>
 #include <string>
+#include <fstream>
 
 class FileManagement
 {
 public:
 	static void readFile(const std::filesystem::path& filename);
-	static void writeFile(std::filesystem::path& p, std::string toWrite);
+	static void writeInterFile();
 	static void checkDir(std::filesystem::path& p);
 	static void iterateFiles(std::filesystem::path& p);
 	static void intermediateWrite(std::string key, int value);

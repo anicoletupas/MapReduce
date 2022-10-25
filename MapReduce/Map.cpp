@@ -36,7 +36,10 @@ void Map::mapFile(string filename, string input)
 	// identifies whitespace and pushes word into intermediate map file
 	while (spaceWord >> temp)
 	{
+		cout << temp;
 		mapExport(temp, 1);
 	}
+
+	FileManagement::writeInterFile();
 //	words_count.insert(pair<string, int>(tokenWord, 1));
 }

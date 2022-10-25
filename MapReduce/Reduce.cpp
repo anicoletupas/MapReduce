@@ -1,5 +1,6 @@
 #include "Reduce.h"
 #include <iostream>
+#include <iterator>
 
 using namespace std;
 

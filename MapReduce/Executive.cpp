@@ -3,6 +3,7 @@
 #include <iostream>
 #include <filesystem>
 #include <map>
+#include <fstream>
 
 using namespace std;
 
@@ -27,13 +28,19 @@ int main()
 	filesystem::path intPath = interPath;
 	FileManagement::checkDir(intPath);
 
+	cout << "Creating output files in intermediate and output folder... \n";
+
+	intPath /= "output.txt";
+	ofstream intOf(intPath);
+	FileManagement::setIntermediatePath(intPath);
+
+	outPath /= "output.txt";
+	ofstream outOf(outPath);
+	FileManagement::setOutputPath(outPath);
+
 	cout << "Starting to parse files in input directory... \n";
 
 	FileManagement::iterateFiles(inPath);
-	FileManagement::setIntermediatePath(intPath);
-	FileManagement::setOutputPath(outPath);
-	FileManagement::createOutput(intPath);
-	FileManagement::createOutput(outPath);
 
 	return 0;
 }

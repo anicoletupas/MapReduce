@@ -4,12 +4,12 @@
 #include <iostream>
 #include <string>
 #include <filesystem>
-#include <map>
+#include <vector>
 
 using namespace std;
 
-static filesystem::path intermediatePath;
-static filesystem::path outputPath;
+filesystem::path interPath;
+vector<pair<string, int>> inter_count;
 
 // use directory_iterator to iterate through all files in the given directory input
 
@@ -21,7 +21,7 @@ void FileManagement::readFile(const filesystem::path& filename)
 	fstream file;
 	file.open(filename);
 
-	while (getline(file, line))
+	while (!file.eof())
 	{
 		getline(file, line);
 		Map::mapFile(filename.string(), line);
@@ -29,18 +29,13 @@ void FileManagement::readFile(const filesystem::path& filename)
 }
 
 // function that creates and writes to a file in given directory, will call from reduce class
-void FileManagement::writeFile(filesystem::path& p, string toWrite)
+void FileManagement::writeInterFile()
 {
-	string fileName = p.generic_string();
-	fileName += "\\output.txt";
-	ofstream outfile;
-	outfile.open(fileName);
-
-	// write to file here
-	cout << fileName << "\n";
-	cout << toWrite;
-	outfile << toWrite;
-
+	fstream output;
+	output.open(interPath);
+	for (auto const& pair : inter_count) {
+		output << pair.first << ", " << pair.second << "\n";
+	}
 }
 
 // error check if directory input is valid
@@ -69,23 +64,22 @@ void FileManagement::iterateFiles(filesystem::path& p)
 
 void FileManagement::intermediateWrite(string key, int value)
 {
-	string output = key + ", " + to_string(value) + "\n";
-	writeFile(intermediatePath, output);
+	inter_count.push_back(make_pair(key, value));
 }
 
 void FileManagement::createOutput(filesystem::path& p)
 {
-	string fileName = p.string() + "\\output.txt";
+	p /= "output.txt";
 	ofstream outfile;
-	outfile.open(fileName);
+	outfile.open(p);
 }
 
 void FileManagement::setIntermediatePath(filesystem::path& p)
 {
-	intermediatePath = p;
+	interPath = p;
+	cout << interPath;
 }
 
 void FileManagement::setOutputPath(filesystem::path& p)
 {
-	outputPath = p;
 }
