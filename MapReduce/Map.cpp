@@ -36,7 +36,6 @@ void Map::mapFile(string filename, string input)
 	// identifies whitespace and pushes word into intermediate map file
 	while (spaceWord >> temp)
 	{
-		cout << temp;
 		mapExport(temp, 1);
 	}
 
